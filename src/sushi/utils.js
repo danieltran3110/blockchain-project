@@ -1,5 +1,6 @@
 import BigNumber from 'bignumber.js'
 import { ethers } from 'ethers'
+import web3 from 'web3'
 
 BigNumber.config({
   EXPONENTIAL_AT: 1000,
@@ -19,6 +20,23 @@ export const getMasterChefAddress = (sushi) => {
 export const getSushiAddress = (sushi) => {
   return sushi && sushi.sushiAddress
 }
+
+export const getToanTokenAddress = (sushi) => {
+    return sushi && sushi.toanTokenAddress
+}
+
+export const getToanTokenContract = (sushi) => {
+    return sushi && sushi.contracts && sushi.contracts.toanTokenContract
+}
+
+export const getFarmAddress = (sushi) => {
+    return sushi && sushi.farmAddress
+}
+
+export const getFarmContract = (sushi) => {
+    return sushi && sushi.contracts && sushi.contracts.farmContract
+}
+
 export const getWethContract = (sushi) => {
   return sushi && sushi.contracts && sushi.contracts.weth
 }
@@ -185,4 +203,51 @@ export const redeem = async (masterChefContract, account) => {
   } else {
     alert('pool not active')
   }
+}
+
+export const farm = {
+    deposit: async(farmContract, amount, account) => {
+        return farmContract.methods
+        .deposit(
+            web3.utils.toWei(amount, "ether")
+        )
+        .send({ from: account, gasPrice: web3.utils.toWei('1', 'Gwei'), gas: '3000000' })
+        .on('transactionHash', (tx) => {
+        console.log(tx)
+        return tx.transactionHash
+        })
+    },
+
+    withdraw: async(farmContract, amount, account) => {
+        return farmContract.methods
+        .withdraw(
+            web3.utils.toWei(amount, "ether")
+        )
+        .send({ from: account, gasPrice: web3.utils.toWei('1', 'Gwei'), gas: '3000000' })
+        .on('transactionHash', (tx) => {
+            console.log(tx)
+            return tx.transactionHash
+        })
+    }
+}
+
+export const toan = {
+    allowance: async(ToanTokenContract, account, FarmTokenAddress) => {
+        return await ToanTokenContract.methods.allowance(account, FarmTokenAddress)
+        .call()
+    },
+
+    approveToDeposit: async(ToanTokenContract, account, FarmTokenAddress) => {
+        return await ToanTokenContract.methods.approve(FarmTokenAddress, ethers.constants.MaxUint256)
+        .send({ from: account, gasPrice: web3.utils.toWei('1', 'Gwei'), gas: '3000000' })
+    },
+
+    transfer: async(ToanTokenContract, address, amount, account) => {
+        return ToanTokenContract.methods
+        .transfer(
+            address,
+            web3.utils.toWei(amount, "ether")
+        )
+        .send({ from: account })
+    }
 }
