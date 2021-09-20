@@ -228,6 +228,11 @@ export const farm = {
             console.log(tx)
             return tx.transactionHash
         })
+    },
+
+    balance: async(farmContract) => {
+        return farmContract.methods
+        .balance().call()
     }
 }
 

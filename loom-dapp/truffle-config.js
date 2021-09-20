@@ -9,6 +9,7 @@ module.exports = {
         port: 7545,
         network_id: "*",
     },
+    
   },
 
   // Set default mocha options here, use special reporters etc.
@@ -19,7 +20,7 @@ module.exports = {
   // Configure your compilers
   compilers: {
     solc: {
-        version: "0.8.0"
+        version: "0.8.4"
     }
   },
 

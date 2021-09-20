@@ -15,7 +15,6 @@ contract FarmToken is ERC20 {
     IERC20 public token;
 
     constructor(address _token)
-        public
         ERC20("NhatToken", "NHAT")
     {
         token = IERC20(_token);

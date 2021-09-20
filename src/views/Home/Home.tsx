@@ -32,13 +32,17 @@ const Home: React.FC = () => {
     const [isApproved, setIsApproved] = useState(false);
     const allowance = useAllowance(toanContract, farmContract);
     const { onApprove } = useApprove(toanContract, farmContract);
-    console.log(toanContract);
     
 
     useEffect(() => {
-        console.log(allowance);
-        
+        if (allowance.toNumber()) {
+            checkBalance();
+        }
     }, [allowance])
+
+    const checkBalance = async() => {
+        const balance = await farm.balance(farmContract);        
+    }
 
     const handleChangeInput = (e: any) => {
         setInputValue(e.currentTarget.value);
