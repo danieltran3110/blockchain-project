@@ -68,11 +68,11 @@ const Farm: React.FC = () => {
           </StyledCardWrapper>
           <Spacer />
           <StyledCardWrapper>
-            <Stake
+            {/* <Stake
               lpContract={lpContract}
               pid={pid}
               tokenName={lpToken.toUpperCase()}
-            />
+            /> */}
           </StyledCardWrapper>
         </StyledCardsWrapper>
         <Spacer size="lg" />

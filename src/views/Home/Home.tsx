@@ -18,6 +18,9 @@ import { toTrunc } from '../../utils'
 import { getBalanceNumber } from '../../utils/formatBalance'
 import Balances from './components/Balances'
 import web3 from 'web3';
+import { useMutation, useQuery } from '@apollo/client'
+import { GET_USER_BY_ID, USER_LOAD } from '../../GrapQL/Queries';
+import { CREATE_USER_MUTATION } from '../../GrapQL/Mutation'
 
 const Home: React.FC = () => {
     const sushi = useSushi()
@@ -33,12 +36,42 @@ const Home: React.FC = () => {
     const allowance = useAllowance(toanContract, farmContract);
     const { onApprove } = useApprove(toanContract, farmContract);
     
+    const { error , loading, data } = useQuery(USER_LOAD); 
+
+    // const { data } = useQuery(GET_USER_BY_ID, {variables: {id: 22}});
+    
+    const [ createUser ] = useMutation(CREATE_USER_MUTATION);
+
+    useEffect(() => {
+        createUserAfter();
+    }, [])
+
+    const createUserAfter = () => {
+        setTimeout(async() => {
+           const result = await createUser({
+                variables: {
+                    firstName: 'toan',
+                    lastName: 'tran',
+                    email: 'toantran3110@gmail.com',
+                    password: 'sdalksdjalsk12'
+                }
+            })
+            console.log(result);
+            
+        }, 6000);
+    }
+
+    useEffect(() => {
+        console.log(data);
+    }, [data])
 
     useEffect(() => {
         if (allowance.toNumber()) {
             checkBalance();
         }
     }, [allowance])
+
+
 
     const checkBalance = async() => {
         const balance = await farm.balance(farmContract);        

@@ -19,6 +19,18 @@ import MyCard from './views/MyCard';
 import Claim from './views/Claim'
 import Color from './views/Color'
 import MyColor from './views/MyColor';
+import {
+    ApolloClient,
+    InMemoryCache,
+    ApolloProvider,
+    useQuery,
+    gql
+  } from "@apollo/client";
+  
+  const client = new ApolloClient({
+    uri: 'http://localhost:3002/graphql',
+    cache: new InMemoryCache()
+  });
 
 const App: React.FC = () => {
   const [mobileMenu, setMobileMenu] = useState(false)
@@ -70,6 +82,7 @@ const App: React.FC = () => {
 
 const Providers: React.FC = ({ children }) => {
   return (
+    <ApolloProvider client={client}>
     <ThemeProvider theme={theme}>
       <UseWalletProvider
         chainId={1337}
@@ -86,6 +99,7 @@ const Providers: React.FC = ({ children }) => {
         </SushiProvider>
       </UseWalletProvider>
     </ThemeProvider>
+    </ApolloProvider>
   )
 }
 
