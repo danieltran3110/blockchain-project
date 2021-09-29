@@ -29,6 +29,14 @@ export const getToanTokenContract = (sushi) => {
     return sushi && sushi.contracts && sushi.contracts.toanTokenContract
 }
 
+export const getColorContractAddress = (sushi) => {
+    return sushi && sushi.colorContractAddress
+}
+
+export const getColorContract = (sushi) => {
+    return sushi && sushi.contracts && sushi.contracts.colorContract
+}
+
 export const getFarmAddress = (sushi) => {
     return sushi && sushi.farmAddress
 }
@@ -46,6 +54,25 @@ export const getMasterChefContract = (sushi) => {
 }
 export const getSushiContract = (sushi) => {
   return sushi && sushi.contracts && sushi.contracts.sushi
+}
+
+export const approveNFT = async (tokenContract, operator, account) => {
+    return tokenContract.methods
+        .setApprovalForAll(operator, true)
+        .send({ from: account })
+        .on('transactionHash', (tx) => {
+            return tx.transactionHash
+        })
+}
+
+// is approved
+export const isApprovedForAll = async (targetContract, operator, account) => {
+    return await targetContract.methods
+        .isApprovedForAll(
+            account,
+            operator
+        )
+        .call({ from: account })
 }
 
 export const getFarms = (sushi) => {
@@ -255,4 +282,15 @@ export const toan = {
         )
         .send({ from: account })
     }
+}
+
+export const colorFnc = {
+    totalColors: async(colorContract) => {
+        return await colorContract.methods
+        .totalColors().call()
+    },
+    mint: async(colorContract, color, account) => {
+        return await colorContract.methods.mint(color).send({from: account})
+    },
+
 }

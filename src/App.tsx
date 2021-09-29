@@ -14,6 +14,11 @@ import theme from './theme'
 import Farms from './views/Farms'
 import Home from './views/Home'
 import Stake from './views/Stake'
+import Bazaar from './views/Bazaar'
+import MyCard from './views/MyCard';
+import Claim from './views/Claim'
+import Color from './views/Color'
+import MyColor from './views/MyColor';
 
 const App: React.FC = () => {
   const [mobileMenu, setMobileMenu] = useState(false)
@@ -40,6 +45,21 @@ const App: React.FC = () => {
           </Route>
           <Route path="/staking">
             <Stake />
+          </Route>
+          <Route path="/bazaar">
+              <Bazaar />
+          </Route>
+          <Route path="/mycard">
+              <MyCard />
+          </Route>
+          <Route path="/claim">
+              <Claim />
+          </Route>
+          <Route path="/color">
+              <Color />
+          </Route>
+          <Route path="/mycolor">
+              <MyColor />
           </Route>
         </Switch>
       </Router>

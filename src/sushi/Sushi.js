@@ -41,6 +41,7 @@ export class Sushi {
     this.masterChefAddress = contractAddresses.masterChef[networkId]
     this.wethAddress = contractAddresses.weth[networkId]
     this.toanTokenAddress = contractAddresses.toanToken[networkId]
+    this.colorContractAddress = contractAddresses.color[networkId]
     this.farmAddress = contractAddresses.farm[networkId]
   }
 

@@ -6,6 +6,7 @@ import UNIV2PairAbi from './abi/uni_v2_lp.json'
 import WETHAbi from './abi/weth.json'
 import ToanAbi from './abi/MyToken.json'
 import FarmAbi from './abi/FarmToken.json'
+import ColorAbi from './abi/colorAbi.json'
 import {
   contractAddresses,
   SUBTRACT_GAS_LIMIT,
@@ -28,6 +29,7 @@ export class Contracts {
     this.weth = new this.web3.eth.Contract(WETHAbi)
     this.toanTokenContract = new this.web3.eth.Contract(ToanAbi)
     this.farmContract = new this.web3.eth.Contract(FarmAbi)
+    this.colorContract = new this.web3.eth.Contract(ColorAbi)
 
     this.pools = supportedPools.map((pool) =>
       Object.assign(pool, {
@@ -54,6 +56,7 @@ export class Contracts {
     setProvider(this.weth, contractAddresses.weth[networkId])
     setProvider(this.toanTokenContract, contractAddresses.toanToken[networkId])
     setProvider(this.farmContract, contractAddresses.farm[networkId])
+    setProvider(this.colorContract, contractAddresses.color[networkId])
 
     this.pools.forEach(
       ({ lpContract, lpAddress, tokenContract, tokenAddress }) => {

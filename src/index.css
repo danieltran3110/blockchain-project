@@ -11,3 +11,59 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+.color {
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.color .color__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.color .color__header .input{
+    box-shadow: none;
+    padding: 5px;
+}
+
+.color .color__list {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.color .color__item {
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.color .color__bg {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+    border-radius: 50%;
+}
+
+.color .color__item .name {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.color .color__header .group-input .btn-custom {
+    padding: 5px;
+    background-color: antiquewhite;
+    box-shadow: none;
+    border-left: 0;
+}

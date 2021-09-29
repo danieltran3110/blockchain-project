@@ -49,10 +49,13 @@ export const contractAddresses = {
     1: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
   },
   toanToken: {
-    1337: '0xF47AF7879238b9a04a6f438c6Ab92FcB8d4EDf63'
+    1337: '0xbe7E28c1f43EC0D69Eac38dc0590aFAB292772aA'
   },
   farm: {
-    1337: '0x1e91f856dFfec771198841acd68f297Bb02e41c0'
+    1337: '0x2Ec3E417179416fa77d58318ec0F85893c01ee13'
+  },
+  color: {
+    1337: '0x822030922c14455c979C3b263536AA210DAaeD1E'
   }
 }
 
